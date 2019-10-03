@@ -35,3 +35,4 @@ public class RestAssuredTest {
         Assert.assertEquals(users.length, 10);
     }
 }
+
