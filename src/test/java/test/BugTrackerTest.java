@@ -8,7 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import javax.swing.*;
 
 public class BugTrackerTest {
 
@@ -18,8 +17,9 @@ public class BugTrackerTest {
             "KVapp",
             "Katsiaryna Volkava");
 
+
     @BeforeTest
-    public void initTest(){
+    public void initTest() {
         RestAssured.baseURI = "http://52.202.21.1:8080";
     }
 
@@ -46,9 +46,11 @@ public class BugTrackerTest {
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
-
+    @Test
     public void checkTheCorrectAppIsReturned() {
-
+        String appId = Integer.toString(myApplication.getId());
+        Response response = RestAssured.when().get("/v1/application/".concat(appId));
+        System.out.println(response.asString());
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
-
 }
